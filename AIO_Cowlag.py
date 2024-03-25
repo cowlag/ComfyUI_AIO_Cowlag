@@ -363,7 +363,7 @@ class img2imgAllInOne:
                 scheduler="normal",  # KSampler
                 denoise=1.0,  # KSampler
                 vae_name="",  # VAELoader
-                imageupload # LoadImage
+                imageupload=None # LoadImage
                 ):
 
         # CheckpointLoader
