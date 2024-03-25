@@ -310,11 +310,10 @@ class img2imgAllInOne:
                         + First value is a string indicate the type of field or a list for selection.
                         + Secound value is a config for type "INT", "STRING" or "FLOAT".
         """
-        input_dir = folder_paths.get_input_directory()
-        files = [f for f in os.listdir(input_dir) if os.path.isfile(os.path.join(input_dir, f))]
         return {
 
             "required": {
+                "imageupload": ("IMAGE",), # LoadImage
                 "ckpt_name": (folder_paths.get_filename_list("checkpoints"),),  # CheckpointLoaderSimple
                 "lora_name": (["None"] + folder_paths.get_filename_list("loras"),),  # LoraLoader
                 "strength_model": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),  # LoraLoader
@@ -331,8 +330,7 @@ class img2imgAllInOne:
                 "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),  # KSampler
                 "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),  # KSampler
                 "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),  # KSampler
-                "vae_name": (s.vae_list(),),  # VAELoader
-                "imageupload": (sorted(files), {"image_upload": True}) # LoadImage
+                "vae_name": (s.vae_list(),)  # VAELoader
             },
         }
 
@@ -346,6 +344,7 @@ class img2imgAllInOne:
     CATEGORY = "CowlagNodes"
 
     def img2img(self,
+                imageupload, # LoadImage
                 ckpt_name,  # CheckpointLoaderSimple
                 lora_name,  # LoraLoader
                 strength_model,  # LoraLoader
@@ -362,8 +361,7 @@ class img2imgAllInOne:
                 sampler_name="euler",  # KSampler
                 scheduler="normal",  # KSampler
                 denoise=1.0,  # KSampler
-                vae_name="",  # VAELoader
-                imageupload=None # LoadImage
+                vae_name=""  # VAELoader
                 ):
 
         # CheckpointLoader
