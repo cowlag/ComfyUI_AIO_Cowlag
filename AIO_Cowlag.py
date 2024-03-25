@@ -4,6 +4,7 @@ import comfy.utils
 import comfy.sd
 import comfy.samplers
 import torch
+import os
 # MAX_RESOLUTION=8192
 
 
