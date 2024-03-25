@@ -310,9 +310,10 @@ class img2imgAllInOne:
                         + First value is a string indicate the type of field or a list for selection.
                         + Secound value is a config for type "INT", "STRING" or "FLOAT".
         """
+        input_dir = folder_paths.get_input_directory()
+        files = [f for f in os.listdir(input_dir) if os.path.isfile(os.path.join(input_dir, f))]
         return {
-            input_dir = folder_paths.get_input_directory()
-            files = [f for f in os.listdir(input_dir) if os.path.isfile(os.path.join(input_dir, f))]
+
             "required": {
                 "ckpt_name": (folder_paths.get_filename_list("checkpoints"),),  # CheckpointLoaderSimple
                 "lora_name": (["None"] + folder_paths.get_filename_list("loras"),),  # LoraLoader
