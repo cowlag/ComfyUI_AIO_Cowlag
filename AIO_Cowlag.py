@@ -392,10 +392,10 @@ class img2imgAllInOne:
         # return vae
 
         # LoadImage
-        (pixels,MASK,) = LoadImage().load_image(imageupload)
+        # (pixels,MASK,) = LoadImage().load_image(imageupload)
 
         # ImageScale
-        (imageupscaled,) =ImageScale().upscale(pixels, upscale_method, width, height, crop)
+        (imageupscaled,) =ImageScale().upscale(imageupload, upscale_method, width, height, crop)
 
         # VAEEncode
         (latentoutputencoded,) = VAEEncode().encode(vae_new, imageupscaled)
